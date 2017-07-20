@@ -1,0 +1,16 @@
+﻿@model MvcApplication.Models.Car
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Новая машина</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Name, "Название")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br /><br />
+    <input type="submit" value="Добавить" />
+}

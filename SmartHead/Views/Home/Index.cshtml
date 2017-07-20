@@ -1,0 +1,30 @@
+﻿@using MvcApplication.Helpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h3>Машины</h3>
+    <h4><a href="/Home/Create">Добавить машину</a></h4>
+    <table>
+        <tr class="header">
+            <td>
+                <p><a href="/Home?sortOrder=@ViewBag.NumberSort">Порядковый номер</a></p></td>
+            <td>
+                <p><a href="/Home?sortOrder=@ViewBag.NameSort">Название</a></p>
+            </td>
+            <td></td>
+        </tr>
+        @foreach (MvcApplication.Models.Car c in Model.Cars)
+        {
+            <tr>
+                <td><p>@c.Number</p></td>
+                <td><p>@c.Name</p></td>
+                <td><p><a href="/Home/EditCar/@c.Id">редактировать</a></p></td>
+                <td><p><a href="/Home/Delete/@c.Id">удалить</a></p></td>
+            </tr>}
+    </table>
+    <br/>
+    <div class="btn-group">
+        @Html.Paging(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+    </div>
+</div>
